@@ -71,7 +71,7 @@ C {lab_pin.sym} -430 -368 0 0 {name=p1 sig_type=std_logic lab=VDD}
 C {vsource.sym} -1310 -30 0 0 {name=VDD value=\{VDD\} savecurrent=false}
 C {lab_pin.sym} -1310 -90 0 0 {name=p5 sig_type=std_logic lab=VDD}
 C {gnd.sym} -1310 20 0 0 {name=l2 lab=GND}
-C {code.sym} -980 -420 0 0 {name=Sim_Param only_toplevel=false 
+C {code.sym} -1110 -420 0 0 {name=Sim_Param only_toplevel=false 
 
 value="
 *.param VDD = 3.3
@@ -126,100 +126,6 @@ value=20k
 footprint=1206
 device=resistor
 m=1}
-C {devices/code.sym} -1275 -265 0 0 {name=OP_sim_hv only_toplevel=false spice_ignore=1
-
-value="
-
-.param VDD = 3.3
-.param VCM = 0.8
-
-.control
-reset
-  op
-  setplot op1
-  unset filetype
-  * VM1
-  let VsdM1 = v(x1.VA) - v(x1.VB)
-  let VsgM1 = v(x1.VA) - v(VCM)
-  let VthM1 = @n.x1.xm1.nsg13_hv_pmos[vth]
-  let VovM1 = VsgM1 - VthM1
-  let gmM1 = @n.x1.xm1.nsg13_hv_pmos[gm]	
-  let gdsM1 = @n.x1.xm1.nsg13_hv_pmos[gds]	
-  let RoM1 = 1/gdsM1
-  * VM2
-  let VsdM2 = v(x1.VA) - v(x1.VC)
-  let VsgM2 = v(x1.VA) - v(VIN)
-  let VthM2 = @n.x1.xm2.nsg13_hv_pmos[vth]
-  let VovM2 = VsgM2 - VthM2
-  let gmM2 = @n.x1.xm2.nsg13_hv_pmos[gm]	
-  let gdsM2 = @n.x1.xm2.nsg13_hv_pmos[gds]	
-  let RoM2 = 1/gdsM2
-  * VM3
-  let VdsM3 = v(x1.VB) - v(VSS)
-  let VthM3 = @n.x1.xm3.nsg13_hv_nmos[vth]
-  let gmM3 = @n.x1.xm3.nsg13_hv_nmos[gm]	
-  let gdsM3 = @n.x1.xm3.nsg13_hv_nmos[gds]	
-  let RoM3 = 1/gdsM3
-  * VM4
-  let VdsM4 = v(x1.VC) - v(VSS)
-  let VgsM4 = v(x1.VB) - v(VSS)
-  let VthM4 = @n.x1.xm4.nsg13_hv_nmos[vth]
-  let VovM4 = VgsM4 - VthM4
-  let gmM4 = @n.x1.xm4.nsg13_hv_nmos[gm]	
-  let gdsM4 = @n.x1.xm4.nsg13_hv_nmos[gds]	
-  let RoM4 = 1/gdsM4
-  * VM5
-  let VsdM5 = v(VDD) - v(VOUT)
-  let VsgM5 = v(VDD) - v(Vibias)
-  let VthM5 = @n.x1.xm5.nsg13_hv_pmos[vth]
-  let VovM5 = VsgM5 - VthM5
-  let gmM5 = @n.x1.xm5.nsg13_hv_pmos[gm]	
-  let gdsM5 = @n.x1.xm5.nsg13_hv_pmos[gds]	
-  let RoM5 = 1/gdsM5
-  * VM6
-  let VdsM6 = v(VOUT) - v(VSS)
-  let VgsM6 = v(x1.VC) - v(VSS)
-  let VthM6 = @n.x1.xm6.nsg13_hv_nmos[vth]
-  let VovM6 = VgsM6 - VthM6
-  let gmM6 = @n.x1.xm6.nsg13_hv_nmos[gm]	
-  let gdsM6 = @n.x1.xm6.nsg13_hv_nmos[gds]	
-  let CggM6 = @n.x1.xm6.nsg13_hv_nmos[cgg]	
-  let RoM6 = 1/gdsM6
-  * VM7
-  let VsdM7 = v(VDD) - v(x1.VA)
-  let VsgM7 = v(VDD) - v(Vibias)
-  let VthM7 = @n.x1.xm7.nsg13_hv_pmos[vth]
-  let VovM7 = VsgM7 - VthM7
-  let gmM7 = @n.x1.xm7.nsg13_hv_pmos[gm]	
-  let gdsM7 = @n.x1.xm7.nsg13_hv_pmos[gds]	
-  let RoM7 = 1/gdsM7
-  * VM8
-  let VsdM8 = v(VDD) - v(Vibias)
-  let VthM8 = @n.x1.xm8.nsg13_hv_pmos[vth]
-  let VovM8 = VsgM8 - VthM8
-  let gmM8 = @n.x1.xm8.nsg13_hv_pmos[gm]	
-  let gdsM8 = @n.x1.xm8.nsg13_hv_pmos[gds]	
-  let RoM8 = 1/gdsM8
-  * VMR
-  let VdsMR = v(x1.VC) - v(x1.VsMR)
-  let gdsMR = @n.x1.xm9.nsg13_hv_nmos[gds]
-  let RoMR = 1/gdsMR
-
-  let Av1 = gmM1/(gdsM2+gdsM4)
-  let Av2 = gmM6/(gdsM5+gdsM6)
-  let Av = Av1*Av2
-  let BW = (gdsM2+gdsM4)/(2*pi*Av2*\{Cc\})
-  let GBW = gmM1/(2*pi*\{Cc\})
-  *let fnd = gmM6/(2*pi*\{Cl\})
-  
-  print Av1 Av2 Av
-  print BW GBW 
-   
-  write TB_OTA2_OL_IPD413_202501_HW2.raw
-.endc
-
-.end
-"}
 C {vsource.sym} -560 -70 0 0 {name=V3 value=DC\{VCM\}}
 C {lab_pin.sym} -290 -368 0 0 {name=p2 sig_type=std_logic lab=VSS}
 C {vsource.sym} -1200 -30 0 0 {name=VSS value=0 savecurrent=false}
@@ -321,7 +227,7 @@ value="
 
 .end
 "}
-C {devices/code.sym} -1155 -265 0 0 {name=OP_sim_lv only_toplevel=false spice_ignore=0
+C {devices/code.sym} -1275 -265 0 0 {name=OP_sim_lv only_toplevel=false spice_ignore=0
 
 value="
 
@@ -415,12 +321,12 @@ reset
   print BW GBW 
   print wo Rc Cc2
    
-  write TB_OTA1_OL_IPD413_202501_HW2.raw
+  write TB_OTA1_OL.raw
 .endc
 
 .end
 "}
-C {code.sym} -1290 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=1
+C {code.sym} -1270 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=0
 
 value="
 .param temp=27
@@ -450,43 +356,6 @@ value="
 .param l_R = 0.13u
 
 .param Cc = 4.3p
-.param Cl = 20p
-.csparam Cl = \{Cl\}
-.csparam Cc = \{Cc\}
-
-"}
-C {code.sym} -1140 -420 0 0 {name=MillerOTA_Param1 only_toplevel=false spice_ignore=0
-
-value="
-.param temp=27
-
-.param m_M8 = 200
-.param m_M7 = 18
-.param m_M5 = 4500
-.param w_M8 =1u 
-.param w_M7 =1u
-.param w_M5 =1u
-.param l_M875 = 1u
-
-.param m_M12 = 3
-.param w_M12 =1u
-.param l_M12 = 1u
-
-.param m_M34 = 4
-.param w_M34 =1u 
-.param l_M34 = 9u
-
-.param m_M6 = 420
-.param w_M6 =1u 
-.param l_M6 = 1u
-
-.param m_R = 1
-*.param w_R =10u 
-.param w_R = 0.15u
-.param l_R = 0.13u
-
-*.param Cc = 0.1p
-.param Cc = 0.4p
 .param Cl = 20p
 .csparam Cl = \{Cl\}
 .csparam Cc = \{Cc\}

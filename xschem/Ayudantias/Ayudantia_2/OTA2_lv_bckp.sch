@@ -55,8 +55,15 @@ L 4 1105 -220 1105 -190 {}
 L 4 1235 -220 1235 -190 {}
 L 4 1100 -520 1100 -440 {}
 L 4 1100 -520 1235 -520 {}
-L 4 1235 -520 1235 -440 {}
-L 4 1100 -440 1235 -440 {}
+L 4 1285 -520 1285 -440 {}
+L 4 1100 -420 1235 -420 {}
+L 4 1100 -440 1100 -420 {}
+L 4 1285 -440 1285 -420 {}
+L 4 1235 -520 1265 -520 {}
+L 4 1235 -420 1265 -420 {}
+L 4 1260 -420 1280 -420 {}
+L 4 1265 -520 1285 -520 {}
+L 4 1280 -420 1285 -420 {}
 T {M1} 145 -470 0 0 0.3 0.3 {}
 T {M3} 145 -320 0 0 0.3 0.3 {}
 T {M2} 515 -470 0 0 0.3 0.3 {}
@@ -211,79 +218,79 @@ C {devices/ipin.sym} 290 -410 0 0 {name=p2 lab=IN_N
 }
 C {devices/ipin.sym} 730 -410 0 1 {name=p1 lab=IN_P}
 C {devices/ipin.sym} 90 -510 0 0 {name=p9 lab=Vibias}
-C {sg13g2_pr/sg13_hv_pmos.sym} 340 -410 0 0 {name=M1
-l=\{w_M12\}
-w=\{l_M12\}
+C {sg13g2_pr/sg13_lv_pmos.sym} 340 -410 0 0 {name=M1
+l=\{l_M12\}
+w=\{w_M12\}
 ng=1
 m=\{m_M12\}
-model=sg13_hv_pmos
+model=sg13_lv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 380 -230 2 0 {name=M3
-l=\{w_M34\}
-w=\{l_M34\}
+C {sg13g2_pr/sg13_lv_nmos.sym} 380 -230 2 0 {name=M3
+l=\{l_M34\}
+w=\{w_M34\}
 ng=1
 m=\{m_M34\}
-model=sg13_hv_nmos
+model=sg13_lv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 700 -410 0 1 {name=M2
-l=\{w_M12\}
-w=\{l_M12\}
+C {sg13g2_pr/sg13_lv_pmos.sym} 700 -410 0 1 {name=M2
+l=\{l_M12\}
+w=\{w_M12\}
 ng=1
 m=\{m_M12\}
-model=sg13_hv_pmos
+model=sg13_lv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 660 -230 2 1 {name=M4
-l=\{w_M34\}
-w=\{l_M34\}
+C {sg13g2_pr/sg13_lv_nmos.sym} 660 -230 2 1 {name=M4
+l=\{l_M34\}
+w=\{w_M34\}
 ng=1
 m=\{m_M34\}
-model=sg13_hv_nmos
+model=sg13_lv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 990 -600 0 0 {name=M5
-l=\{w_M875\}
-w=\{l_M875\}
+C {sg13g2_pr/sg13_lv_pmos.sym} 990 -600 0 0 {name=M5
+l=\{l_M875\}
+w=\{w_M5\}
 ng=1
-m=\{m_M875\}
-model=sg13_hv_pmos
+m=\{m_M5\}
+model=sg13_lv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 990 -230 2 1 {name=M6
-l=\{w_M6\}
-w=\{l_M6\}
+C {sg13g2_pr/sg13_lv_nmos.sym} 990 -230 2 1 {name=M6
+l=\{l_M6\}
+w=\{w_M6\}
 ng=1
 m=\{m_M6\}
-model=sg13_hv_nmos
+model=sg13_lv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 500 -600 0 0 {name=M7
-l=\{w_M875\}
-w=\{l_M875\}
+C {sg13g2_pr/sg13_lv_pmos.sym} 500 -600 0 0 {name=M7
+l=\{l_M875\}
+w=\{w_M7\}
 ng=1
-m=\{m_M875\}
-model=sg13_hv_pmos
+m=\{m_M7\}
+model=sg13_lv_pmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_pmos.sym} 190 -600 0 1 {name=M8
-l=\{w_M875\}
-w=\{l_M875\}
+C {sg13g2_pr/sg13_lv_pmos.sym} 190 -600 0 1 {name=M8
+l=\{l_M875\}
+w=\{w_M8\}
 ng=1
-m=\{m_M875\}
-model=sg13_hv_pmos
+m=\{m_M8\}
+model=sg13_lv_pmos
 spiceprefix=X
 }
 C {opin.sym} 1160 -370 0 0 {name=p6 lab=OUT}
 C {iopin.sym} 610 -670 2 0 {name=p3 lab=VDD}
 C {iopin.sym} 520 -110 2 0 {name=p4 lab=VSS}
-C {sg13g2_pr/sg13_hv_nmos.sym} 810 -390 1 0 {name=M9
-l=\{w_R\}
-w=\{l_R\}
+C {sg13g2_pr/sg13_lv_nmos.sym} 810 -390 1 0 {name=M9
+l=\{l_R\}
+w=\{w_R\}
 ng=1
 m=\{m_R\}
-model=sg13_hv_nmos
+model=sg13_lv_nmos
 spiceprefix=X
 }
 C {capa.sym} 960 -370 3 0 {name=C1
@@ -333,11 +340,11 @@ C {ngspice_get_value.sym} 525 -425 0 1 {name=r4 node=VthM2
 descr="Vth= "}
 C {ngspice_get_value.sym} 525 -400 0 1 {name=r6 node=gmM2
 descr="gm= "}
-C {ngspice_get_value.sym} 575 -425 0 1 {name=r7 node=VsdM2
+C {ngspice_get_value.sym} 585 -425 0 1 {name=r7 node=VsdM2
 descr="Vsd= "}
-C {ngspice_get_value.sym} 575 -400 0 1 {name=r9 node= VovM2
+C {ngspice_get_value.sym} 585 -400 0 1 {name=r9 node= VovM2
 descr="Vov= "}
-C {ngspice_get_value.sym} 500 -375 0 1 {name=r10 node=VsgM2
+C {ngspice_get_value.sym} 510 -375 0 1 {name=r10 node=VsgM2
 descr="Vsg= "}
 C {ngspice_get_value.sym} 525 -275 0 1 {name=r11 node=VthM4
 descr="Vth= "}
@@ -363,11 +370,11 @@ C {ngspice_get_value.sym} 745 -595 0 1 {name=r26 node=VsdM7
 descr="Vsd= "}
 C {ngspice_get_value.sym} 745 -570 0 1 {name=r27 node= VovM7
 descr="Vov= "}
-C {ngspice_get_value.sym} 670 -545 0 1 {name=r28 node=VsgM7
+C {ngspice_get_value.sym} 680 -545 0 1 {name=r28 node=VsgM7
 descr="Vsg= "}
 C {ngspice_get_value.sym} 1170 -595 0 1 {name=r29 node=VthM5
 descr="Vth= "}
-C {ngspice_get_value.sym} 1170 -570 0 1 {name=r30 node=gmM5
+C {ngspice_get_value.sym} 1160 -570 0 1 {name=r30 node=gmM5
 descr="gm= "}
 C {ngspice_get_value.sym} 1220 -595 0 1 {name=r31 node=VsdM5
 descr="Vsd= "}
@@ -385,13 +392,13 @@ C {ngspice_get_value.sym} 1220 -250 0 1 {name=r37 node= VovM6
 descr="Vov= "}
 C {ngspice_get_value.sym} 1155 -225 0 1 {name=r38 node=VgsM6
 descr="Vgs= "}
-C {ngspice_get_value.sym} 885 -250 0 1 {name=r41 node=VdsMR
+C {ngspice_get_value.sym} 895 -250 0 1 {name=r41 node=VdsMR
 descr="Vds= "}
 C {ngspice_get_value.sym} 215 -375 0 1 {name=r40 node=RoM1
 descr="Ro= "}
-C {ngspice_get_value.sym} 575 -375 0 1 {name=r42 node=RoM2
+C {ngspice_get_value.sym} 585 -375 0 1 {name=r42 node=RoM2
 descr="Ro= "}
-C {ngspice_get_value.sym} 745 -545 0 1 {name=r43 node=RoM7
+C {ngspice_get_value.sym} 755 -545 0 1 {name=r43 node=RoM7
 descr="Ro= "}
 C {ngspice_get_value.sym} 575 -225 0 1 {name=r44 node=RoM4
 descr="Ro= "}
@@ -411,9 +418,15 @@ C {ngspice_get_value.sym} 1140 -475 0 1 {name=r23 node=Av1
 descr="Av1= "}
 C {ngspice_get_value.sym} 1140 -450 0 1 {name=r47 node=Av2
 descr="Av2= "}
-C {ngspice_get_value.sym} 1180 -475 0 1 {name=r48 node=Av
+C {ngspice_get_value.sym} 1140 -425 0 1 {name=r48 node=Av
 descr="Av= "}
-C {ngspice_get_value.sym} 1225 -475 0 1 {name=r49 node=BW
+C {ngspice_get_value.sym} 1215 -475 0 1 {name=r49 node=BW
 descr="BW= "}
-C {ngspice_get_value.sym} 1230 -445 0 1 {name=r50 node=GBW
+C {ngspice_get_value.sym} 1215 -450 0 1 {name=r50 node=GBW
 descr="GBW= "}
+C {ngspice_get_value.sym} 1280 -450 0 1 {name=r51 node=Cc2
+descr="Cc= "}
+C {ngspice_get_value.sym} 1280 -475 0 1 {name=r52 node=Rc
+descr="Rc= "}
+C {ngspice_get_value.sym} 1210 -425 0 1 {name=r53 node=DCG
+descr="DCG= "}

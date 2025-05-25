@@ -71,7 +71,7 @@ C {lab_pin.sym} -430 -368 0 0 {name=p1 sig_type=std_logic lab=VDD}
 C {vsource.sym} -1310 -30 0 0 {name=VDD value=\{VDD\} savecurrent=false}
 C {lab_pin.sym} -1310 -90 0 0 {name=p5 sig_type=std_logic lab=VDD}
 C {gnd.sym} -1310 20 0 0 {name=l2 lab=GND}
-C {code.sym} -980 -420 0 0 {name=Sim_Param only_toplevel=false 
+C {code.sym} -940 -420 0 0 {name=Sim_Param only_toplevel=false 
 
 value="
 *.param VDD = 3.3
@@ -122,7 +122,7 @@ tclcommand="xschem annotate_op"}
 C {isource.sym} -270 80 0 0 {name=I0 value=DC\{ibias\}}
 C {res.sym} -410 -470 1 0 {name=R3
 *value=5k
-value=20k
+value=100k
 footprint=1206
 device=resistor
 m=1}
@@ -325,8 +325,7 @@ value="
 
 .end
 "}
-C {./OTA2_lv.sym} -370 -160 0 0 {name=x1}
-C {devices/code.sym} -1155 -265 0 0 {name=OP_sim_lv only_toplevel=false spice_ignore=0
+C {devices/code.sym} -1125 -255 0 0 {name=OP_sim_lv only_toplevel=false spice_ignore=0
 
 value="
 
@@ -369,7 +368,8 @@ reset
   let gdsM4 = @n.x1.xm4.nsg13_lv_nmos[gds]	
   let RoM4 = 1/gdsM4
   * VM5
-  let VsdM5 = v(VDD) - v(VOUT)
+  
+  let VsdM5 = v(VDD) - v(x1.VA)
   let VsgM5 = v(VDD) - v(Vibias)
   let VthM5 = @n.x1.xm5.nsg13_lv_pmos[vth]
   let VovM5 = VsgM5 - VthM5
@@ -386,7 +386,7 @@ reset
   let CggM6 = @n.x1.xm6.nsg13_lv_nmos[cgg]	
   let RoM6 = 1/gdsM6
   * VM7
-  let VsdM7 = v(VDD) - v(x1.VA)
+  let VsdM7 = v(VDD) - v(VOUT)
   let VsgM7 = v(VDD) - v(Vibias)
   let VthM7 = @n.x1.xm7.nsg13_lv_pmos[vth]
   let VovM7 = VsgM7 - VthM7
@@ -409,22 +409,23 @@ reset
   let Rc = 1/gmM6
 
   let Av1 = gmM1/(gdsM2+gdsM4)
-  let Av2 = gmM6/(gdsM5+gdsM6)
+  let Av2 = gmM6/(gdsM7+gdsM6)
   let Av = Av1*Av2
   let BW = (gdsM2+gdsM4)/(2*pi*Av2*\{Cc\})
   *let w1 = 1/((gdsM2+gdsM4)*gmM6*(gdsM6+gdsM7)*\{Cc\})
   *let w22 = gmM6/(CggM6+\{Cl\})
-  let w2 = gmM6/((\{Cl\})*(1+CggM6/\{Cc\}))
+  *let w2 = gmM6/((\{Cl\})*(1+CggM6/\{Cc\}))
+  let w2 = gmM6/(2*pi*(\{Cl\})*(1+CggM6/\{Cc\}))
   let GBW = gmM1/(2*pi*\{Cc\})
   *let GBW2 = gmM1/\{Cc\}
   let DCG = 20*log10(Av)
   *let fnd = gmM6/(2*pi*\{Cl\})
   
   print Av1 Av2 Av DCG
-  print BW GBW w2 
+  print BW GBW w2
   print Rc Cc2
    
-  write TB_OTA2_OL_IPD413_202501_HW2.raw
+  write TB_OTA2_OL.raw
 .endc
 
 .end
@@ -464,14 +465,14 @@ value="
 .csparam Cc = \{Cc\}
 
 "}
-C {code.sym} -1140 -420 0 0 {name=MillerOTA_Param1 only_toplevel=true spice_ignore=1
+C {code.sym} -740 -640 0 0 {name=MillerOTA_6Mhz60dB only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27
 
 .param m_M8 = 200
-.param m_M7 = 18
-.param m_M5 = 4500
+.param m_M5 = 18
+.param m_M7 = 4500
 .param w_M8 =1u 
 .param w_M7 =1u
 .param w_M5 =1u
@@ -501,7 +502,7 @@ value="
 .csparam Cc = \{Cc\}
 
 "}
-C {code.sym} -660 -640 0 0 {name=MillerOTA_60MHz60dB only_toplevel=false spice_ignore=0
+C {code.sym} -550 -640 0 0 {name=MillerOTA_60MHz60dB only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27
@@ -536,3 +537,39 @@ value="
 .csparam Cc = \{Cc\}
 
 "}
+C {code.sym} -1120 -420 0 0 {name=MillerOTA_Tarea2 only_toplevel=false spice_ignore=0
+
+value="
+.param temp=27
+
+.param m_M8 = 15
+.param m_M7 = 150
+.param m_M5 = 2
+.param w_M8 =10u 
+.param w_M7 = 10u
+.param w_M5 = 10u
+.param l_M875 = 1u
+
+.param m_M12 = 2
+.param w_M12 =5*1.5u
+.param l_M12 = 0.5*1.5u
+
+.param m_M34 = 2
+.param w_M34 =0.3*1.4u 
+.param l_M34 = 0.5*1.4u
+
+.param m_M6 = 10
+.param w_M6 =10u 
+.param l_M6 = 0.18u
+
+.param m_R = 1
+.param w_R =0.15u 
+.param l_R = 0.13u
+
+.param Cc = 0.1p
+.param Cl = 5p
+.csparam Cl = \{Cl\}
+.csparam Cc = \{Cc\}
+
+"}
+C {../Tarea_2/OTA2_lv.sym} -370 -160 0 0 {name=x1}

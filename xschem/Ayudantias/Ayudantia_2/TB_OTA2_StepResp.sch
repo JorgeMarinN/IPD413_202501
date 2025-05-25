@@ -212,7 +212,6 @@ value="
 "}
 C {lab_pin.sym} -270 30 0 0 {name=Vibias sig_type=std_logic lab=Vibias
 value=0}
-C {/workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Tareas/Tarea_2/OTA2_lv.sym} -370 -160 0 0 {name=x1}
 C {code.sym} -1280 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=1
 
 value="
@@ -266,7 +265,7 @@ value="
 
 .end
 "}
-C {code.sym} -1130 -420 0 0 {name=MillerOTA_Param2 only_toplevel=false spice_ignore=0
+C {code.sym} -1130 -420 0 0 {name=MillerOTA_Param2 only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27
@@ -304,3 +303,76 @@ value="
 
 "}
 C {vsource.sym} -900 -30 0 0 {name=V1 value="PULSE(\{-1*vstep\} \{vstep\} 0.0 1p 1p \{T/2\} \{T\}) DC 1 AC 0"}
+C {../Ayudantia_2/OTA2_lv.sym} -370 -160 0 0 {name=x1}
+C {code.sym} -560 -630 0 0 {name=MillerOTA_60MHz60dB only_toplevel=false spice_ignore=0
+
+value="
+.param temp=27
+
+.param m_M8 = 500
+.param m_M5 = 40
+.param m_M7 = 11000
+.param w_M8 =0.5u 
+.param w_M7 =0.5u
+.param w_M5 =0.5u
+.param l_M875 = 1u
+
+.param m_M12 = 40
+.param w_M12 =0.3u
+.param l_M12 = 0.3u
+
+.param m_M34 = 1
+.param w_M34 =0.15u 
+.param l_M34 = 0.5u
+
+.param m_M6 = 10
+.param w_M6 =10u 
+.param l_M6 = 0.13u
+
+.param m_R = 1
+.param w_R =0.15u 
+.param l_R = 0.13u
+
+.param Cc = 0.1p
+.param Cl = 20p
+.csparam Cl = \{Cl\}
+.csparam Cc = \{Cc\}
+
+"}
+C {code.sym} -750 -630 0 0 {name=MillerOTA_6Mhz60dB only_toplevel=false spice_ignore=1
+
+value="
+.param temp=27
+
+.param m_M8 = 200
+.param m_M5 = 18
+.param m_M7 = 4500
+.param w_M8 =1u 
+.param w_M7 =1u
+.param w_M5 =1u
+.param l_M875 = 1u
+
+.param m_M12 = 3
+.param w_M12 =1u
+.param l_M12 = 1u
+
+.param m_M34 = 4
+.param w_M34 =1u 
+.param l_M34 = 9u
+
+.param m_M6 = 420
+.param w_M6 =1u 
+.param l_M6 = 1u
+
+.param m_R = 1
+*.param w_R =10u 
+.param w_R = 0.15u
+.param l_R = 0.13u
+
+*.param Cc = 0.1p
+.param Cc = 0.4p
+.param Cl = 20p
+.csparam Cl = \{Cl\}
+.csparam Cc = \{Cc\}
+
+"}

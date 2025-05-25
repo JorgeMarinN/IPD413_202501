@@ -75,65 +75,17 @@ N -320 -420 -320 -390 {
 lab=Vdd}
 N -430 -290 -320 -290 {
 lab=GND}
-N -700 130 -670 130 {
-lab=GND}
-N -670 130 -670 190 {
-lab=GND}
-N -700 190 -670 190 {
-lab=GND}
-N -700 90 -700 100 {
-lab=#net3}
-N -700 10 -700 30 {
-lab=#net4}
-N -560 130 -520 130 {
-lab=Vg_M1}
-N -480 160 -480 200 {
-lab=GND}
-N -480 90 -480 100 {
-lab=#net5}
-N -480 130 -460 130 {
-lab=#net5}
-N -460 90 -460 130 {
-lab=#net5}
-N -480 90 -460 90 {
-lab=#net5}
-N -480 70 -480 90 {
-lab=#net5}
-N -700 190 -700 200 {
-lab=GND}
-N -700 160 -700 190 {
-lab=GND}
-N -700 10 -480 10 {
-lab=#net4}
-N -990 10 -700 10 {
-lab=#net4}
-N -990 60 -990 70 {
-lab=#net4}
-N -990 130 -990 200 {
-lab=GND}
-N -700 200 -480 200 {
-lab=GND}
-N -990 200 -700 200 {
-lab=GND}
-N -990 60 -870 60 {
-lab=#net4}
-N -990 10 -990 60 {
-lab=#net4}
-N -870 60 -870 130 {
-lab=#net4}
-N -870 130 -740 130 {
-lab=#net4}
 C {vsource.sym} -660 -360 0 0 {name=Vg_M1 value=\{Vg_M1\} savecurrent=false}
 C {vsource.sym} -540 -360 0 0 {name=Vd_M1 value=0 savecurrent=false}
 C {lab_pin.sym} -540 -420 0 0 {name=p1 sig_type=std_logic lab=Vd_M1}
 C {lab_pin.sym} -660 -420 0 0 {name=p4 sig_type=std_logic lab=Vg_M1}
 C {gnd.sym} -660 -270 0 0 {name=l2 lab=GND}
-C {sg13g2_pr/sg13_hv_nmos.sym} -720 -110 2 1 {name=M2
+C {sg13g2_pr/sg13_lv_nmos.sym} -720 -110 2 1 {name=M2
 l=\{l_M2\}
 w=\{w_M2\}
 ng=\{ng_M2\}
 m=\{mult_M2\}
-model=sg13_hv_nmos
+model=sg13_lv_nmos
 spiceprefix=X
 }
 C {gnd.sym} -700 -40 0 0 {name=l1 lab=GND}
@@ -143,12 +95,12 @@ C {ngspice_get_value.sym} -780 -170 0 0 {name=r6
 node=Vth_M2
 descr="Vth="}
 C {lab_pin.sym} -770 -110 0 0 {name=p3 sig_type=std_logic lab=Vg_M2}
-C {sg13g2_pr/sg13_hv_pmos.sym} -500 -110 0 0 {name=M1
+C {sg13g2_pr/sg13_lv_pmos.sym} -500 -110 0 0 {name=M1
 l=\{l_M1\}
 w=\{w_M1\}
 ng=\{ng_M1\}
 m=\{mult_M1\}
-model=sg13_hv_pmos
+model=sg13_lv_pmos
 spiceprefix=X
 }
 C {lab_pin.sym} -480 -40 0 0 {name=p7 sig_type=std_logic lab=Vd_M1}
@@ -181,14 +133,14 @@ C {devices/code.sym} -1130 -180 0 0 {name=DC_sweep_simulation only_toplevel=fals
 value="
 .save all
 
-.param Vg_M1 = 0
-.param Vg_M2 = 3.3
+.param Vg_M1 = 0.4
+.param Vg_M2 = 0.5
 .csparam V_on = 100m
 
 .control
 reset 
 run
-dc Vd_M2 0 1 0.01 
+dc Vd_M2 0 1.2 0.01 
 *dc Vds 0 0.5 0.01 temp 0 27 1
 let Vds_M2 = v(Vd_M2) 
 let Ids_M2 = i(VdM2)
@@ -218,7 +170,7 @@ meas dc RonM2 FIND Ron_M22 AT=\{Vds_on\}
 .control
 reset 
 run
-dc Vd_M1 2.3 3.3 0.01 
+dc Vd_M1 0 1.2 0.01 
 *dc Vd_M1 2 1.8 0.01 temp 0 27 1
 
 let Vsd_M1 = v(Vdd) -v(Vd_M1)
@@ -247,15 +199,15 @@ meas dc RonM1 FIND Ron_M11 AT=\{Vsd_on\}
 reset
 unset filetype
 op
-let Vth_M2 = @n.xm2.nsg13_hv_nmos[vth]
-let gds_M2 = @n.xm2.nsg13_hv_nmos[gds]
+let Vth_M2 = @n.xm2.nsg13_lv_nmos[vth]
+let gds_M2 = @n.xm2.nsg13_lv_nmos[gds]
 let Vov_M2 = v(Vg_M2) - Vth_M2
-let Vth_M1 = @n.xm1.nsg13_hv_pmos[vth]
-let gds_M1 = @n.xm1.nsg13_hv_pmos[gds]
+let Vth_M1 = @n.xm1.nsg13_lv_pmos[vth]
+let gds_M1 = @n.xm1.nsg13_lv_pmos[gds]
 let Vov_M1 = v(Vdd)-v(Vg_M1) - Vth_M1
 let Vth_M3 = @n.xm3.nsg13_lv_pmos[vth]
 let Vth_M4 = @n.xm4.nsg13_lv_nmos[vth]
-write TB_hvMOS_POWER_Sizing.raw
+write TB_lvMOS_charact.raw
 .endc
 
 .end
@@ -266,9 +218,9 @@ descr="Annotate OP"
 tclcommand="xschem annotate_op"}
 C {ngspice_get_value.sym} -780 -140 0 0 {name=r1 node=Vov_M2
 descr="Vov="}
-C {vsource.sym} -430 -360 0 0 {name=Vd_M2 value=3.3 savecurrent=false}
+C {vsource.sym} -430 -360 0 0 {name=Vd_M2 value=1.2 savecurrent=false}
 C {lab_pin.sym} -430 -420 0 0 {name=p10 sig_type=std_logic lab=Vd_M2}
-C {vsource.sym} -320 -360 0 0 {name=Vdd value=3.3 savecurrent=false}
+C {vsource.sym} -320 -360 0 0 {name=Vdd value=1.2 savecurrent=false}
 C {lab_pin.sym} -320 -420 0 0 {name=p5 sig_type=std_logic lab=Vdd}
 C {ngspice_get_value.sym} -420 -180 0 0 {name=r2 
 node=Vth_M1
@@ -280,46 +232,15 @@ C {code.sym} -1130 -330 0 0 {name=POWER_MOS_Param only_toplevel=false spice_igno
 value="
 .param temp=27
 .param mult_M1 = 1
-.param w_M1 =4u 
+.param w_M1 =0.15u 
 .param l_M1 = 1u
 .param ng_M1 = 1
 
 .param mult_M2 = 1
-.param w_M2 =1u 
-.param l_M2 =1u
+.param w_M2 =0.15u 
+.param l_M2 =0.15u
 .param ng_M2 =1
 
 
 
 "}
-C {gnd.sym} -700 200 0 0 {name=l3 lab=GND}
-C {ammeter.sym} -480 40 0 0 {name=VdM3 savecurrent=true spice_ignore=0}
-C {ngspice_get_value.sym} -780 70 0 0 {name=r4 
-node=Vth_M4
-descr="Vth="}
-C {lab_pin.sym} -560 130 0 0 {name=p14 sig_type=std_logic lab=Vg_M1}
-C {ammeter.sym} -700 60 0 0 {name=VdM4 savecurrent=true spice_ignore=0}
-C {ngspice_get_value.sym} -780 100 0 0 {name=r5 node=Vov_M2
-descr="Vov="}
-C {ngspice_get_value.sym} -420 60 0 0 {name=r7 
-node=Vth_M3
-descr="Vth="}
-C {ngspice_get_value.sym} -420 90 0 0 {name=r8 node=Vov_M1
-descr="Vov="}
-C {sg13g2_pr/sg13_lv_nmos.sym} -720 130 0 0 {name=M4
-l=0.45u
-w=1.0u
-ng=1
-m=1
-model=sg13_lv_nmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_lv_pmos.sym} -500 130 0 0 {name=M3
-l=0.45u
-w=1.0u
-ng=1
-m=1
-model=sg13_lv_pmos
-spiceprefix=X
-}
-C {vsource.sym} -990 100 0 0 {name=Vdd1 value=1.2 savecurrent=false}

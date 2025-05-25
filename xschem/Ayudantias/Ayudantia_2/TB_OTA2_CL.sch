@@ -179,7 +179,6 @@ C {lab_pin.sym} -270 140 0 0 {name=VSS8 sig_type=std_logic lab=VSS
 value=0}
 C {lab_pin.sym} -270 30 0 0 {name=Vibias sig_type=std_logic lab=Vibias
 value=0}
-C {/workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Tareas/Tarea_2/OTA2_lv.sym} -370 -160 0 0 {name=x1}
 C {code.sym} -1280 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=1
 
 value="
@@ -495,3 +494,4 @@ value="
 .csparam Cc = \{Cc\}
 
 "}
+C {../Ayudantia_2/OTA2_lv.sym} -370 -160 0 0 {name=x2 spice_ignore=0}

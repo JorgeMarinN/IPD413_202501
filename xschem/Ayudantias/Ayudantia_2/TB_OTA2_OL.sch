@@ -325,7 +325,6 @@ value="
 
 .end
 "}
-C {/workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Tareas/Tarea_2/OTA2_lv.sym} -370 -160 0 0 {name=x1}
 C {devices/code.sym} -1125 -255 0 0 {name=OP_sim_lv only_toplevel=false spice_ignore=0
 
 value="
@@ -503,7 +502,7 @@ value="
 .csparam Cc = \{Cc\}
 
 "}
-C {code.sym} -550 -640 0 0 {name=MillerOTA_60MHz60dB only_toplevel=false spice_ignore=0
+C {code.sym} -550 -640 0 0 {name=MillerOTA_60MHz60dB only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27
@@ -538,7 +537,7 @@ value="
 .csparam Cc = \{Cc\}
 
 "}
-C {code.sym} -1120 -420 0 0 {name=MillerOTA_Tarea2 only_toplevel=false spice_ignore=1
+C {code.sym} -320 -640 0 0 {name=MillerOTA_Tarea2 only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27
@@ -568,6 +567,42 @@ value="
 .param l_R = 0.13u
 
 .param Cc = 0.1p
+.param Cl = 5p
+.csparam Cl = \{Cl\}
+.csparam Cc = \{Cc\}
+
+"}
+C {../Ayudantia_2/OTA2_lv.sym} -370 -160 0 0 {name=x1 spice_ignore=0}
+C {code.sym} -1130 -420 0 0 {name=MillerOTA_Param1 only_toplevel=false spice_ignore=0
+
+value="
+.param temp=27
+
+.param m_M8 = 180
+.param m_M7 = 1800
+.param m_M5 = 540
+.param w_M8 =10u 
+.param w_M7 =10u
+.param w_M5 =10u
+.param l_M875 = 5u
+
+.param m_M12 = 150 
+.param w_M12 =0.6u
+.param l_M12 = 0.5u
+
+.param m_M34 = 150
+.param w_M34 =0.2u 
+.param l_M34 = 5u
+
+.param m_M6 = 250
+.param w_M6 =0.15u 
+.param l_M6 = 0.13u
+
+.param m_R = 4
+.param w_R =10u 
+.param l_R = 0.13u
+
+.param Cc = 3p
 .param Cl = 5p
 .csparam Cl = \{Cl\}
 .csparam Cc = \{Cc\}

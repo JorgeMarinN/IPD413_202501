@@ -25,4 +25,4 @@ C {../Tarea_2/TB_OTA1_OL.sym} -4130 -240 0 0 {name=X1}
 C {../Tarea_2/TB_OTA2_OL.sym} -3830 -240 0 0 {name=X2}
 C {../Tarea_2/TB_OTA2_CL.sym} -3830 -190 0 0 {name=X3}
 C {../Tarea_2/TB_OTA2_StepResp.sym} -3830 -140 0 0 {name=X4}
-C {/workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Tareas/Tarea_2/mos-noise-corners_IHP_jm.sym} -4430 -240 0 0 {name=X5}
+C {../Tarea_2/mos-noise-corners_IHP_jm.sym} -4430 -240 0 0 {name=X5}

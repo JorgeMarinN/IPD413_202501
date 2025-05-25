@@ -75,7 +75,7 @@ T {1 - Determinar polos de la OTA.
 12 - ¡¡TODOS LOS TRANSITORES DEBEN ESTAR EN SATURACION ,MENOS Rc!!
 } -3910 -750 0 0 0.3 0.3 {}
 C {title.sym} -4270 -70 0 0 {name=l1 author="Andrés Martínez"}
-C {../Ayudantia_2/TB_OTA2_OL.sym} -4160 -630 0 0 {name=x1}
-C {../Ayudantia_2/TB_OTA2_CL.sym} -4160 -580 0 0 {name=X2}
-C {../Ayudantia_2/TB_OTA2_StepResp.sym} -4160 -530 0 0 {name=X3}
+C {../Ayudantia_2/TB_OTA2_OL.sym} -4160 -630 0 0 {name=x1 spice_ignore=0}
+C {../Ayudantia_2/TB_OTA2_CL.sym} -4160 -580 0 0 {name=X2 spice_ignore=0}
+C {../Ayudantia_2/TB_OTA2_StepResp.sym} -4160 -530 0 0 {name=X3 spice_ignore=0}
 C {../Ayudantia_2/TB_lvMOS_charact.sym} -4160 -680 0 0 {name=X4}

@@ -69,7 +69,7 @@ C {lab_pin.sym} -430 -368 0 0 {name=p1 sig_type=std_logic lab=VDD}
 C {vsource.sym} -1250 -50 0 0 {name=VDD value=\{VDD\} savecurrent=false}
 C {lab_pin.sym} -1250 -110 0 0 {name=p5 sig_type=std_logic lab=VDD}
 C {gnd.sym} -1250 0 0 0 {name=l2 lab=GND}
-C {code.sym} -980 -420 0 0 {name=Sim_Param only_toplevel=false 
+C {code.sym} -1270 -420 0 0 {name=Sim_Param only_toplevel=false 
 
 value="
 *.param VDD = 3.3
@@ -179,7 +179,7 @@ C {lab_pin.sym} -270 140 0 0 {name=VSS8 sig_type=std_logic lab=VSS
 value=0}
 C {lab_pin.sym} -270 30 0 0 {name=Vibias sig_type=std_logic lab=Vibias
 value=0}
-C {code.sym} -1280 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=1
+C {code.sym} -1150 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=0
 
 value="
 .param temp=27
@@ -208,8 +208,8 @@ value="
 .param w_R =0.15u 
 .param l_R = 0.13u
 
-.param Cc = 4.3p
-.param Cl = 20p
+.param Cc = 0.1p
+.param Cl = 5p
 .csparam Cl = \{Cl\}
 .csparam Cc = \{Cc\}
 
@@ -386,112 +386,5 @@ reset
 .endc
 
 .end
-"}
-C {code.sym} -790 -660 0 0 {name=MillerOTA_Param1 only_toplevel=false spice_ignore=1
-
-value="
-.param temp=27
-
-.param m_M8 = 200
-.param m_M7 = 18
-.param m_M5 = 4500
-.param w_M8 =1u 
-.param w_M7 =1u
-.param w_M5 =1u
-.param l_M875 = 1u
-
-.param m_M12 = 3
-.param w_M12 =1u
-.param l_M12 = 1u
-
-.param m_M34 = 4
-.param w_M34 =1u 
-.param l_M34 = 9u
-
-.param m_M6 = 420
-.param w_M6 =1u 
-.param l_M6 = 1u
-
-.param m_R = 1
-*.param w_R =10u 
-.param w_R = 0.15u
-.param l_R = 0.13u
-
-*.param Cc = 0.1p
-.param Cc = 0.4p
-.param Cl = 20p
-.csparam Cl = \{Cl\}
-.csparam Cc = \{Cc\}
-
-"}
-C {code.sym} -1130 -420 0 0 {name=MillerOTA_Param2 only_toplevel=false spice_ignore=1
-
-value="
-.param temp=27
-
-.param m_M8 = 500
-.param m_M7 = 40
-.param m_M5 = 11000
-.param w_M8 =0.5u 
-.param w_M7 =0.5u
-.param w_M5 =0.5u
-.param l_M875 = 1u
-
-.param m_M12 = 40
-.param w_M12 =0.3u
-.param l_M12 = 0.3u
-
-.param m_M34 = 1
-.param w_M34 =0.15u 
-.param l_M34 = 0.5u
-
-.param m_M6 = 10
-.param w_M6 =10u 
-.param l_M6 = 0.13u
-
-.param m_R = 1
-.param w_R =0.15u 
-.param l_R = 0.13u
-
-.param Cc = 0.1p
-.param Cl = 20p
-.csparam Cl = \{Cl\}
-.csparam Cc = \{Cc\}
-
-"}
-C {code.sym} -610 -650 0 0 {name=MillerOTA_60MHz60dB only_toplevel=false spice_ignore=0
-
-value="
-.param temp=27
-
-.param m_M8 = 500
-.param m_M5 = 40
-.param m_M7 = 11000
-.param w_M8 =0.5u 
-.param w_M7 =0.5u
-.param w_M5 =0.5u
-.param l_M875 = 1u
-
-.param m_M12 = 40
-.param w_M12 =0.3u
-.param l_M12 = 0.3u
-
-.param m_M34 = 1
-.param w_M34 =0.15u 
-.param l_M34 = 0.5u
-
-.param m_M6 = 10
-.param w_M6 =10u 
-.param l_M6 = 0.13u
-
-.param m_R = 1
-.param w_R =0.15u 
-.param l_R = 0.13u
-
-.param Cc = 0.1p
-.param Cl = 20p
-.csparam Cl = \{Cl\}
-.csparam Cc = \{Cc\}
-
 "}
 C {../Ayudantia_2/OTA2_lv.sym} -370 -160 0 0 {name=x2 spice_ignore=0}

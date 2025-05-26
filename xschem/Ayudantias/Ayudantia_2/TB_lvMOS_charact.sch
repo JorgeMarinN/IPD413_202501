@@ -133,7 +133,7 @@ C {devices/code.sym} -1130 -180 0 0 {name=DC_sweep_simulation only_toplevel=fals
 value="
 .save all
 
-.param Vg_M1 = 0.8
+.param Vg_M1 = 0.75
 .param Vg_M2 = 0.5
 .csparam V_on = 100m
 
@@ -231,14 +231,14 @@ C {code.sym} -1130 -330 0 0 {name=POWER_MOS_Param only_toplevel=false spice_igno
 
 value="
 .param temp=27
-.param mult_M1 = 180
-.param w_M1 =10u 
-.param l_M1 = 5u
+.param mult_M1 = 300
+.param w_M1 =0.5u 
+.param l_M1 = 1u
 .param ng_M1 = 1
 
 .param mult_M2 = 1
 .param w_M2 =1u 
-.param l_M2 =5u
+.param l_M2 =0.5u
 .param ng_M2 =1
 
 

@@ -69,7 +69,7 @@ C {lab_pin.sym} -430 -368 0 0 {name=p1 sig_type=std_logic lab=VDD}
 C {vsource.sym} -1250 -50 0 0 {name=VDD value=\{VDD\} savecurrent=false}
 C {lab_pin.sym} -1250 -110 0 0 {name=p5 sig_type=std_logic lab=VDD}
 C {gnd.sym} -1250 0 0 0 {name=l2 lab=GND}
-C {code.sym} -1140 -420 0 0 {name=Sim_Param only_toplevel=false 
+C {code.sym} -1280 -420 0 0 {name=Sim_Param only_toplevel=false 
 
 value="
 *.param VDD = 3.3
@@ -179,7 +179,7 @@ C {lab_pin.sym} -270 140 0 0 {name=VSS8 sig_type=std_logic lab=VSS
 value=0}
 C {lab_pin.sym} -270 30 0 0 {name=Vibias sig_type=std_logic lab=Vibias
 value=0}
-C {code.sym} -1290 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=0
+C {code.sym} -1160 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27
@@ -214,7 +214,7 @@ value="
 .csparam Cc = \{Cc\}
 
 "}
-C {devices/code.sym} -1395 -265 0 0 {name=Tran_sim only_toplevel=false spice_ignore=0
+C {devices/code.sym} -1395 -275 0 0 {name=Tran_sim only_toplevel=false spice_ignore=0
 
 value="
 

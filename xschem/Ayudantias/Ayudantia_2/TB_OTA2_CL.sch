@@ -179,7 +179,7 @@ C {lab_pin.sym} -270 140 0 0 {name=VSS8 sig_type=std_logic lab=VSS
 value=0}
 C {lab_pin.sym} -270 30 0 0 {name=Vibias sig_type=std_logic lab=Vibias
 value=0}
-C {code.sym} -1150 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=0
+C {code.sym} -1150 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27
@@ -284,6 +284,7 @@ value="
 
 .end
 "}
+C {../Ayudantia_2/OTA2_lv.sym} -370 -160 0 0 {name=x1 spice_ignore=0}
 C {devices/code.sym} -1275 -265 0 0 {name=OP_sim_lv only_toplevel=false spice_ignore=0
 
 value="
@@ -310,8 +311,10 @@ reset
   let VthM2 = @n.x1.xm2.nsg13_lv_pmos[vth]
   let VovM2 = VsgM2 - VthM2
   let gmM2 = @n.x1.xm2.nsg13_lv_pmos[gm]	
+  let IdM2 = @n.x1.xm2.nsg13_lv_pmos[ids]
   let gdsM2 = @n.x1.xm2.nsg13_lv_pmos[gds]	
   let RoM2 = 1/gdsM2
+  let gmIdM2 = gmM2/IdM2
   * VM3
   let VdsM3 = v(x1.VB) - v(VSS)
   let VthM3 = @n.x1.xm3.nsg13_lv_nmos[vth]
@@ -327,7 +330,8 @@ reset
   let gdsM4 = @n.x1.xm4.nsg13_lv_nmos[gds]	
   let RoM4 = 1/gdsM4
   * VM5
-  let VsdM5 = v(VDD) - v(VOUT)
+  
+  let VsdM5 = v(VDD) - v(x1.VA)
   let VsgM5 = v(VDD) - v(Vibias)
   let VthM5 = @n.x1.xm5.nsg13_lv_pmos[vth]
   let VovM5 = VsgM5 - VthM5
@@ -340,11 +344,13 @@ reset
   let VthM6 = @n.x1.xm6.nsg13_lv_nmos[vth]
   let VovM6 = VgsM6 - VthM6
   let gmM6 = @n.x1.xm6.nsg13_lv_nmos[gm]	
+  let IdM6 = @n.x1.xm6.nsg13_lv_nmos[ids]
   let gdsM6 = @n.x1.xm6.nsg13_lv_nmos[gds]	
   let CggM6 = @n.x1.xm6.nsg13_lv_nmos[cgg]	
   let RoM6 = 1/gdsM6
+  let gmIdM6 = gmM6/IdM6
   * VM7
-  let VsdM7 = v(VDD) - v(x1.VA)
+  let VsdM7 = v(VDD) - v(VOUT)
   let VsgM7 = v(VDD) - v(Vibias)
   let VthM7 = @n.x1.xm7.nsg13_lv_pmos[vth]
   let VovM7 = VsgM7 - VthM7
@@ -362,29 +368,38 @@ reset
   let VdsMR = v(x1.VC) - v(x1.VsMR)
   let gdsMR = @n.x1.xm9.nsg13_lv_nmos[gds]
   let RoMR = 1/gdsMR
-  
-  let Cc2 = gmM2/\{wo\}
-  let Rc = 1/gmM6
 
+  let Ro24 = 1/(gdsM2+gdsM4)
+  let Ro67 = 1/(gdsM7+gdsM6)
   let Av1 = gmM1/(gdsM2+gdsM4)
-  let Av2 = gmM6/(gdsM5+gdsM6)
+  let Av2 = gmM6/(gdsM7+gdsM6)
   let Av = Av1*Av2
   let BW = (gdsM2+gdsM4)/(2*pi*Av2*\{Cc\})
-  *let w1 = 1/((gdsM2+gdsM4)*gmM6*(gdsM6+gdsM7)*\{Cc\})
+  let gdsM2_gdsM4 = gdsM2+gdsM4 
   *let w22 = gmM6/(CggM6+\{Cl\})
-  let w2 = gmM6/((\{Cl\})*(1+CggM6/\{Cc\}))
+  *let w2 = gmM6/((\{Cl\})*(1+CggM6/\{Cc\}))
+  *let w2 = gmM6/(2*pi*\{Cl\}*(1+CggM6/\{Cc\}))
+  let w2 = gmM6/(\{Cl\}*(1+CggM6/\{Cc\}))
+  let cggM6_cc = CggM6/\{Cc\}
   let GBW = gmM1/(2*pi*\{Cc\})
   *let GBW2 = gmM1/\{Cc\}
   let DCG = 20*log10(Av)
   *let fnd = gmM6/(2*pi*\{Cl\})
   
+  let Cc_eq = gmM2/\{GBW_Objetivo\}
+  let Cc = \{Cc\}
+  let gm12_Objetivo = \{GBW_Objetivo\}*\{Cc\}
+  let idm12_Objetivo = gm12_Objetivo/10
+  *let gm6_Objetivo = 3*\{GBW_Objetivo\}*\{Cl\}
+  *let gm6_Objetivo = 3*\{GBW_Objetivo\}*(\{Cl\}*(1+CggM6/\{Cc\}))
+   let gm6_Objetivo = 3*\{GBW_Objetivo\}*(\{Cl\}*(1+CggM6/\{Cc\}))/(2*pi)
+   let idm6_Objetivo = gm6_Objetivo/10
+
   print Av1 Av2 Av DCG
-  print BW GBW w2 
-  print Rc Cc2
+  print BW GBW w2
    
   write TB_OTA2_CL.raw
 .endc
 
 .end
 "}
-C {../Ayudantia_2/OTA2_lv.sym} -370 -160 0 0 {name=x2 spice_ignore=0}

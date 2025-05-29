@@ -46,7 +46,7 @@ T {Ecuaciones} -4310 -560 0 0 0.4 0.4 {}
 T {Guia de diseño} -3900 -780 0 0 0.4 0.4 {}
 T {1 - Determinar polos de la OTA.
     => fp2 = 3*GBW. 
-    => Cc =Cl*0.1 en primera iteracion
+    => Cc =Cl*0.01 en primera iteracion
 2 - Determinar gm6
     => gm6 = fp2*(2pi*Cl(1+CggM6/Cc))
     => gm6 = fp2*2pi*Cl como primera iteración
@@ -68,15 +68,18 @@ T {1 - Determinar polos de la OTA.
     => Ajustar W y L para balancear Vd de M34
 8 - Ajustar GBW al deseado
     => Aumentar gm12. Cambiar W de M345 en proporcion.
-9 - Calcular Cc
-    => Cc = gm1/2pi*GBW
+9 - Mejorar PM de ser necesario
+    => Aumentar Cc mejora el PM, hacerlo en relacion a
+       CggM6.
 10 - Mejorar ganancia de ser necesario
-    => Cambiar solo gm12 para ganancia o L de M2467,
+    => Se puede cambiar gm12 para ganancia o L de M2467,
        gm6 cambia respuesta en frecuencia.
-       No aumentar mucho L ya que aumenta CggM6 y 
+    => L cambia la resistencia de salida, aumentar L de
+       transistores con Rmas pequeña.
+       No aumentar mucho LM6 ya que aumenta CggM6 y 
        disminuye wp2.
 11 - ¡¡TODOS LOS TRANSITORES DEBEN ESTAR EN SATURACION !!
-} -3910 -750 0 0 0.3 0.3 {}
+} -3910 -750 0 0 0.25 0.25 {}
 T {- GBW = 30MHz
 - DCG  = 60dB
 - PM = >60°
@@ -85,7 +88,7 @@ T {Especificaciones de diseño} -3370 -780 0 0 0.4 0.4 {}
 T {Desarrollo} -3370 -660 0 0 0.4 0.4 {}
 T {1. 
   - fp2 = 3*30MHz = 90MHz
-  - Cc = 0.5pF
+  - Cc = 0.05pF
 2.
   - gm6 = 90M*2*pi*5p 
         = 900*pi*10⁻6 = 2.82m

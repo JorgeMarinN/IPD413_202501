@@ -179,7 +179,7 @@ C {lab_pin.sym} -270 140 0 0 {name=VSS8 sig_type=std_logic lab=VSS
 value=0}
 C {lab_pin.sym} -270 30 0 0 {name=Vibias sig_type=std_logic lab=Vibias
 value=0}
-C {code.sym} -1160 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=0
+C {code.sym} -1160 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27

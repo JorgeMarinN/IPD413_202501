@@ -7,6 +7,11 @@ S {
 
 }
 E {}
+L 4 -10 -330 100 -330 {}
+L 4 100 -430 100 -330 {}
+L 4 -30 -430 100 -430 {}
+L 4 -30 -430 -30 -330 {}
+L 4 -30 -330 -10 -330 {}
 T {OTA Miller} -1410 -720 0 0 0.8 0.8 {}
 T {Esto es tanto para lv_nmos como para lv_pmos
 l_min = 0.13u
@@ -71,17 +76,13 @@ C {lab_pin.sym} -430 -368 0 0 {name=p1 sig_type=std_logic lab=VDD}
 C {vsource.sym} -1310 -30 0 0 {name=VDD value=\{VDD\} savecurrent=false}
 C {lab_pin.sym} -1310 -90 0 0 {name=p5 sig_type=std_logic lab=VDD}
 C {gnd.sym} -1310 20 0 0 {name=l2 lab=GND}
-C {code.sym} -1130 -420 0 0 {name=Sim_Param only_toplevel=false 
+C {code.sym} -1270 -420 0 0 {name=Sim_Param only_toplevel=false 
 
 value="
 *.param VDD = 3.3
 .param Ibias = 100u
 .param Pi = 3.14159265
-.param wo = 2*Pi*60Meg
-.csparam wo = \{wo\}
 
-*.param VCM = 0.8
-*.param VAC = 60m
 .param VAC  = 10m
 .param fin  = 9.765625e5
 
@@ -122,7 +123,7 @@ tclcommand="xschem annotate_op"}
 C {isource.sym} -270 80 0 0 {name=I0 value=DC\{ibias\}}
 C {res.sym} -410 -470 1 0 {name=R3
 *value=5k
-value=100k
+value=1000k
 footprint=1206
 device=resistor
 m=1}
@@ -144,7 +145,7 @@ footprint=1206
 device=resistor
 m=1}
 C {res.sym} -820 -200 1 0 {name=R1
-value=2k
+value=3k
 footprint=1206
 device=resistor
 m=1}
@@ -231,7 +232,7 @@ value="
 
 .end
 "}
-C {devices/code.sym} -1275 -265 0 0 {name=OP_sim_lv only_toplevel=false spice_ignore=0
+C {devices/code.sym} -1265 -265 0 0 {name=OP_sim_lv only_toplevel=false spice_ignore=0
 
 value="
 
@@ -251,14 +252,17 @@ reset
   let gmM1 = @n.x1.xm1.nsg13_lv_pmos[gm]	
   let gdsM1 = @n.x1.xm1.nsg13_lv_pmos[gds]	
   let RoM1 = 1/gdsM1
+  let CggM1 = @n.x1.xm1.nsg13_lv_pmos[cgg]	
   * VM2
   let VsdM2 = v(x1.VA) - v(x1.VC)
   let VsgM2 = v(x1.VA) - v(VIN)
   let VthM2 = @n.x1.xm2.nsg13_lv_pmos[vth]
   let VovM2 = VsgM2 - VthM2
   let gmM2 = @n.x1.xm2.nsg13_lv_pmos[gm]	
+  let IdM2 = @n.x1.xm2.nsg13_lv_pmos[ids]
   let gdsM2 = @n.x1.xm2.nsg13_lv_pmos[gds]	
   let RoM2 = 1/gdsM2
+  let gmIdM2 = gmM2/IdM2
   * VM3
   let VdsM3 = v(x1.VB) - v(VSS)
   let VthM3 = @n.x1.xm3.nsg13_lv_nmos[vth]
@@ -288,9 +292,11 @@ reset
   let VthM6 = @n.x1.xm6.nsg13_lv_nmos[vth]
   let VovM6 = VgsM6 - VthM6
   let gmM6 = @n.x1.xm6.nsg13_lv_nmos[gm]	
+  let IdM6 = @n.x1.xm6.nsg13_lv_nmos[ids]
   let gdsM6 = @n.x1.xm6.nsg13_lv_nmos[gds]	
   let CggM6 = @n.x1.xm6.nsg13_lv_nmos[cgg]	
   let RoM6 = 1/gdsM6
+  let gmIdM6 = gmM6/IdM6
   * VM7
   let VsdM7 = v(VDD) - v(VOUT)
   let VsgM7 = v(VDD) - v(Vibias)
@@ -306,34 +312,51 @@ reset
   let gmM8 = @n.x1.xm8.nsg13_lv_pmos[gm]	
   let gdsM8 = @n.x1.xm8.nsg13_lv_pmos[gds]	
   let RoM8 = 1/gdsM8
-  
-  
-  let Cc2 = gmM2/\{wo\}
-  let Rc = 1/gmM6
+  * VMR
+  let VdsMR = v(x1.VC) - v(x1.VsMR)
+  let gdsMR = @n.x1.xm9.nsg13_lv_nmos[gds]
+  let RoMR = 1/gdsMR
 
+  let Ro24 = 1/(gdsM2+gdsM4)
+  let Ro67 = 1/(gdsM7+gdsM6)
   let Av1 = gmM1/(gdsM2+gdsM4)
   let Av2 = gmM6/(gdsM7+gdsM6)
   let Av = Av1*Av2
   let BW = (gdsM2+gdsM4)/(2*pi*Av2*\{Cc\})
-  *let w1 = 1/((gdsM2+gdsM4)*gmM6*(gdsM6+gdsM7)*\{Cc\})
-  *let w22 = gmM6/(CggM6+\{Cl\})
+  let gdsM2_gdsM4 = gdsM2+gdsM4 
+  let w22 = gmM6/((CggM6+\{Cl\}))
   *let w2 = gmM6/((\{Cl\})*(1+CggM6/\{Cc\}))
-  let w2 = gmM6/(2*pi*(\{Cl\})*(1+CggM6/\{Cc\}))
+  *let w2 = gmM6/(2*pi*\{Cl\}*(1+CggM6/\{Cc\}))
+  let w2 = gmM6/(\{Cl\}*(1+CggM6/\{Cc\}))
+  let cggM6_cc = CggM6/\{Cc\}
   let GBW = gmM1/(2*pi*\{Cc\})
   *let GBW2 = gmM1/\{Cc\}
   let DCG = 20*log10(Av)
   *let fnd = gmM6/(2*pi*\{Cl\})
   
+  let Cc_eq = gmM2/\{GBW_Objetivo\}
+  let Cc = \{Cc\}
+  let gm12_Objetivo = \{GBW_Objetivo\}*\{Cc\}
+  let idm12_Objetivo = gm12_Objetivo/10
+  *let gm6_Objetivo = 3*\{GBW_Objetivo\}*\{Cl\}
+  *let gm6_Objetivo = 3*\{GBW_Objetivo\}*(\{Cl\}*(1+CggM6/\{Cc\}))
+  *let gm6_Objetivo = 3*\{GBW_Objetivo\}*(\{Cl\}*(1+CggM6/\{Cc\}))/(2*pi)
+   let gm6_Objetivo = 3*\{GBW_Objetivo\}*(CggM6+\{Cl\})/(2*pi)
+   let idm6_Objetivo = gm6_Objetivo/10
+
   print Av1 Av2 Av DCG
   print BW GBW w2
-  print Rc Cc2
+  print Cc
+  print w2 w22
+  
    
   write TB_OTA2_OL.raw
 .endc
 
 .end
 "}
-C {code.sym} -1280 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=0
+C {../Tarea_2/OTA2_lv.sym} -370 -160 0 0 {name=x1 spice_ignore=0}
+C {code.sym} -1150 -420 0 0 {name=MillerOTA_Param only_toplevel=false spice_ignore=1
 
 value="
 .param temp=27
@@ -358,14 +381,62 @@ value="
 .param w_M6 =0.15u 
 .param l_M6 = 0.13u
 
-.param m_R = 1
-.param w_R =0.15u 
-.param l_R = 0.13u
+.param Cc = 0.1p
+.param Cl = 5p
+.csparam Cl = \{Cl\}
+.csparam Cc = \{Cc\}
+
+* Requisitos de diseño
+.param Cl = 5p
+.csparam Cl = \{Cl\}
+.param GBW_Objetivo= 2*Pi*100Meg
+.csparam GBW_Objetivo = \{GBW_Objetivo\}
+
+.param Cc = Cl*0.01
+.csparam Cc = \{Cc\}
+
+"}
+C {ngspice_get_value.sym} 80 -385 0 1 {name=r23 node=gm12_Objetivo
+descr="gm12_Objetivo= "}
+C {ngspice_get_value.sym} 80 -350 0 1 {name=r4 node=gm6_Objetivo
+descr="gm6_Objetivo= "}
+C {code.sym} -1000 -420 0 0 {name=MillerOTA_Param1 only_toplevel=false spice_ignore=0
+
+value="
+.param temp=27
+
+.param m_M8 = 1
+.param m_M7 = 1
+.param m_M5 = 1
+.param w_M8 =0.15u 
+.param w_M7 =0.15u
+.param w_M5 =0.15u
+.param l_M875 = 0.13u
+
+.param m_M12 = 1 
+.param w_M12 =0.15u
+.param l_M12 = 0.13u
+
+.param m_M34 = 1
+.param w_M34 =0.15u 
+.param l_M34 = 0.13u
+
+.param m_M6 = 1
+.param w_M6 =0.15u 
+.param l_M6 = 0.13u
 
 .param Cc = 0.1p
 .param Cl = 5p
 .csparam Cl = \{Cl\}
 .csparam Cc = \{Cc\}
 
+* Requisitos de diseño
+.param Cl = 5p
+.csparam Cl = \{Cl\}
+.param GBW_Objetivo= 2*Pi*100Meg
+.csparam GBW_Objetivo = \{GBW_Objetivo\}
+
+.param Cc = Cl*0.01
+.csparam Cc = \{Cc\}
+
 "}
-C {../Tarea_2/OTA2_lv.sym} -370 -160 0 0 {name=x1}

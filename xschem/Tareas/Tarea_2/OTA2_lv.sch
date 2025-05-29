@@ -5,21 +5,21 @@ K {}
 V {}
 S {}
 E {}
-L 4 100 -370 220 -370 {}
-L 4 90 -370 100 -370 {}
+L 4 100 -340 220 -340 {}
+L 4 90 -370 90 -340 {}
 L 4 90 -470 220 -470 {}
 L 4 90 -470 90 -370 {}
 L 4 220 -470 220 -370 {}
 L 4 100 -240 220 -240 {}
 L 4 90 -240 100 -240 {}
 L 4 90 -320 220 -320 {}
-L 4 470 -370 590 -370 {}
-L 4 460 -370 470 -370 {}
+L 4 470 -340 590 -340 {}
+L 4 460 -340 470 -340 {}
 L 4 460 -470 590 -470 {}
 L 4 460 -470 460 -370 {}
 L 4 590 -470 590 -370 {}
-L 4 470 -220 590 -220 {}
-L 4 460 -220 470 -220 {}
+L 4 470 -190 590 -190 {}
+L 4 460 -190 470 -190 {}
 L 4 460 -320 590 -320 {}
 L 4 460 -320 460 -220 {}
 L 4 590 -320 590 -220 {}
@@ -47,17 +47,33 @@ L 4 1105 -320 1105 -220 {}
 L 4 1235 -320 1235 -220 {}
 L 4 1105 -220 1105 -190 {}
 L 4 1235 -220 1235 -190 {}
-L 4 1100 -520 1100 -440 {}
-L 4 1100 -520 1235 -520 {}
-L 4 1285 -520 1285 -440 {}
-L 4 1100 -420 1235 -420 {}
-L 4 1100 -440 1100 -420 {}
-L 4 1285 -440 1285 -420 {}
-L 4 1235 -520 1265 -520 {}
-L 4 1235 -420 1265 -420 {}
-L 4 1260 -420 1280 -420 {}
-L 4 1265 -520 1285 -520 {}
-L 4 1280 -420 1285 -420 {}
+L 4 1090 -520 1090 -440 {}
+L 4 1090 -520 1225 -520 {}
+L 4 1090 -440 1090 -420 {}
+L 4 460 -370 460 -340 {}
+L 4 590 -370 590 -340 {}
+L 4 1090 -425 1090 -410 {}
+L 4 1190 -520 1340 -520 {}
+L 4 840 -420 950 -420 {}
+L 4 950 -520 950 -420 {}
+L 4 820 -550 950 -550 {}
+L 4 820 -520 820 -420 {}
+L 4 820 -420 840 -420 {}
+L 4 460 -220 460 -205 {}
+L 4 590 -220 590 -205 {}
+L 4 590 -205 590 -185 {}
+L 4 460 -205 460 -185 {}
+L 4 820 -550 820 -510 {}
+L 4 950 -550 950 -520 {}
+L 4 1340 -520 1350 -520 {}
+L 4 1350 -520 1390 -520 {}
+L 4 1280 -410 1280 -360 {}
+L 4 1390 -520 1390 -360 {}
+L 4 1300 -360 1390 -360 {}
+L 4 1090 -410 1280 -410 {}
+L 4 1280 -360 1300 -360 {}
+L 4 90 -340 100 -340 {}
+L 4 220 -370 220 -340 {}
 T {M1} 145 -470 0 0 0.3 0.3 {}
 T {M3} 145 -320 0 0 0.3 0.3 {}
 T {M2} 515 -470 0 0 0.3 0.3 {}
@@ -155,7 +171,7 @@ N 680 -200 680 -160 {
 lab=VSS}
 N 520 -160 680 -160 {
 lab=VSS}
-N 410 -200 640 -200 {
+N 410 -180 640 -180 {
 lab=VB}
 N 360 -450 360 -440 {
 lab=#net1}
@@ -193,9 +209,9 @@ N 1010 -370 1050 -370 {
 lab=#net4}
 N 1110 -370 1160 -370 {
 lab=OUT}
-N 640 -230 640 -200 {
+N 640 -230 640 -180 {
 lab=VB}
-N 410 -230 410 -200 {
+N 410 -230 410 -180 {
 lab=VB}
 N 990 -370 1010 -370 {
 lab=#net4}
@@ -349,13 +365,13 @@ C {ngspice_get_value.sym} 1150 -555 0 1 {name=r28 node=VsgM7
 descr="Vsg= "}
 C {ngspice_get_value.sym} 690 -595 0 1 {name=r29 node=VthM5
 descr="Vth= "}
-C {ngspice_get_value.sym} 680 -570 0 1 {name=r30 node=gmM5
+C {ngspice_get_value.sym} 690 -570 0 1 {name=r30 node=gmM5
 descr="gm= "}
-C {ngspice_get_value.sym} 740 -595 0 1 {name=r31 node=VsdM5
+C {ngspice_get_value.sym} 745 -595 0 1 {name=r31 node=VsdM5
 descr="Vsd= "}
-C {ngspice_get_value.sym} 740 -570 0 1 {name=r32 node= VovM5
+C {ngspice_get_value.sym} 745 -570 0 1 {name=r32 node= VovM5
 descr="Vov= "}
-C {ngspice_get_value.sym} 665 -545 0 1 {name=r33 node=VsgM5
+C {ngspice_get_value.sym} 675 -545 0 1 {name=r33 node=VsgM5
 descr="Vsg= "}
 C {ngspice_get_value.sym} 1170 -275 0 1 {name=r34 node=VthM6
 descr="Vth= "}
@@ -373,29 +389,57 @@ C {ngspice_get_value.sym} 585 -375 0 1 {name=r42 node=RoM2
 descr="Ro= "}
 C {ngspice_get_value.sym} 1225 -555 0 1 {name=r43 node=RoM7
 descr="Ro= "}
-C {ngspice_get_value.sym} 575 -225 0 1 {name=r44 node=RoM4
+C {ngspice_get_value.sym} 585 -225 0 1 {name=r44 node=RoM4
 descr="Ro= "}
-C {ngspice_get_value.sym} 740 -545 0 1 {name=r39 node=RoM5
+C {ngspice_get_value.sym} 745 -545 0 1 {name=r39 node=RoM5
 descr="Ro= "}
 C {ngspice_get_value.sym} 1220 -225 0 1 {name=r46 node=RoM6
 descr="Ro= "}
 C {devices/lab_wire.sym} 330 -600 0 0 {name=l7 sig_type=std_logic lab=Vibias
 }
-C {ngspice_get_value.sym} 1165 -195 0 1 {name=r19 node=CggM6
+C {ngspice_get_value.sym} 1170 -195 0 1 {name=r19 node=CggM6
 descr="Cgg= "}
-C {ngspice_get_value.sym} 1140 -475 0 1 {name=r23 node=Av1
+C {ngspice_get_value.sym} 1150 -475 0 1 {name=r23 node=Av1
 descr="Av1= "}
-C {ngspice_get_value.sym} 1140 -450 0 1 {name=r47 node=Av2
+C {ngspice_get_value.sym} 1215 -475 0 1 {name=r47 node=Av2
 descr="Av2= "}
-C {ngspice_get_value.sym} 1140 -425 0 1 {name=r48 node=Av
+C {ngspice_get_value.sym} 1295 -475 0 1 {name=r48 node=Av
 descr="Av= "}
-C {ngspice_get_value.sym} 1215 -475 0 1 {name=r49 node=BW
+C {ngspice_get_value.sym} 1380 -475 0 1 {name=r49 node=BW
 descr="BW= "}
-C {ngspice_get_value.sym} 1215 -450 0 1 {name=r50 node=GBW
+C {ngspice_get_value.sym} 1380 -445 0 1 {name=r50 node=GBW
 descr="GBW= "}
-C {ngspice_get_value.sym} 1280 -450 0 1 {name=r51 node=Cc2
-descr="Cc= "}
-C {ngspice_get_value.sym} 1280 -475 0 1 {name=r52 node=Rc
-descr="Rc= "}
-C {ngspice_get_value.sym} 1210 -425 0 1 {name=r53 node=DCG
+C {ngspice_get_value.sym} 1295 -445 0 1 {name=r53 node=DCG
 descr="DCG= "}
+C {ngspice_get_value.sym} 1225 -195 0 1 {name=r41 node=gmIdM6
+descr="Gm/Id= "}
+C {ngspice_get_value.sym} 510 -345 0 1 {name=r45 node=gmIdM2
+descr="Gm/Id= "}
+C {ngspice_get_value.sym} 1380 -415 0 1 {name=r52 node=w2
+descr="fp2= "}
+C {ngspice_get_value.sym} 1165 -445 0 1 {name=r54 node=Ro24
+descr="Ro24= "}
+C {ngspice_get_value.sym} 1165 -415 0 1 {name=r55 node=gmM2
+descr="gmM2= "}
+C {ngspice_get_value.sym} 1245 -445 0 1 {name=r56 node=Ro67
+descr="Ro67= "}
+C {ngspice_get_value.sym} 1230 -415 0 1 {name=r57 node=gmM6
+descr="gmM6= "}
+C {ngspice_get_value.sym} 930 -515 0 1 {name=r51 node=gm12_Objetivo
+descr="gm12_Objetivo= "}
+C {ngspice_get_value.sym} 930 -460 0 1 {name=r58 node=gm6_Objetivo
+descr="gm6_Objetivo= "}
+C {ngspice_get_value.sym} 585 -345 0 1 {name=r59 node=gdsM2
+descr="gds= "}
+C {ngspice_get_value.sym} 575 -195 0 1 {name=r60 node=gdsM4
+descr="gds= "}
+C {ngspice_get_value.sym} 930 -485 0 1 {name=r61 node=idm12_Objetivo
+descr="idm12_Objetivo= "}
+C {ngspice_get_value.sym} 930 -430 0 1 {name=r62 node=idm6_Objetivo
+descr="idm6_Objetivo= "}
+C {ngspice_get_value.sym} 1305 -415 0 1 {name=r63 node=cggM6_cc
+descr="CggM6/Cc= "}
+C {ngspice_get_value.sym} 1380 -375 0 1 {name=r64 node=gdsM2_gdsM4
+descr="gdsM2+gdsM4= "}
+C {ngspice_get_value.sym} 190 -345 0 1 {name=r65 node=CggM1
+descr="Cgg= "}

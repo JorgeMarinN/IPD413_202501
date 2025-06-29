@@ -95,7 +95,8 @@ C {ngspice_get_value.sym} -780 -170 0 0 {name=r6
 node=Vth_M2
 descr="Vth="}
 C {lab_pin.sym} -770 -110 0 0 {name=p3 sig_type=std_logic lab=Vg_M2}
-C {sg13g2_pr/sg13_hv_pmos.sym} -500 -110 0 0 {name=M1
+C {sg13g2_pr/sg13_hv_pmos.sym} -500 -110 0 0 {spice_ignore=1
+name=M1
 l=\{l_M1\}
 w=\{w_M1\}
 ng=\{ng_M1\}

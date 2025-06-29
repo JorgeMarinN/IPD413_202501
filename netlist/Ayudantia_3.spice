@@ -1,0 +1,19 @@
+** sch_path: /workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Ayudantias/Ayudantia_3/Ayudantia_3.sch
+**.subckt Ayudantia_3
+X1 Inv
+**.ends
+
+* expanding   symbol:
+*+  /workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Ayudantias/Ayudantia_3/Inv.sym # of pins=0
+** sym_path: /workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Ayudantias/Ayudantia_3/Inv.sym
+** sch_path: /workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Ayudantias/Ayudantia_3/Inv.sch
+.subckt Inv
+*.iopin VDD
+*.iopin VSS
+*.opin OUT
+*.ipin IN
+XM1 OUT IN VDD VDD sg13_lv_pmos w=1.0u l=0.45u ng=1 m=30
+XM2 OUT IN VSS VSS sg13_lv_nmos w=1.0u l=0.45u ng=1 m=10
+.ends
+
+.end

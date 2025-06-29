@@ -1,0 +1,1 @@
+sudo chown -R designer /opt/pdks/ihp-sg13g2/

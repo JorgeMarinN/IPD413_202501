@@ -1,0 +1,10 @@
+** sch_path: /workspaces/usm-vlsi-tools/shared_xserver/simulations/Projects/IHP/IPD413_202501/xschem/Ayudantias/Ayudantia_3/Inv.sch
+.subckt Inv IN OUT VDD VSS
+*.iopin VDD
+*.iopin VSS
+*.opin OUT
+*.ipin IN
+XM1 OUT IN VDD VDD sg13_lv_pmos w=1.0u l=0.45u ng=1 m=30
+XM2 OUT IN VSS VSS sg13_lv_nmos w=1.0u l=0.45u ng=1 m=30
+**.ends
+.end

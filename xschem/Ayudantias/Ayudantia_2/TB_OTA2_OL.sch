@@ -473,3 +473,120 @@ value="
 .csparam Cc = \{Cc\}
 
 "}
+C {code.sym} 30 -640 0 0 {name=MillerOTA_100MHz60dB only_toplevel=false spice_ignore=0
+
+value="
+.param temp=27
+
+.param m_M8 = 40
+.param m_M7 = 53
+.param m_M5 = 4
+.param w_M8 =10u 
+.param w_M7 =10u
+.param w_M5 =10u
+.param l_M875 =2u
+
+.param m_M12 = 7
+.param w_M12 =1u
+.param l_M12 = 0.3u
+
+.param m_M34 = 1
+.param w_M34 =0.75u 
+.param l_M34 = 1.2u
+
+.param m_M6 = 14
+.param w_M6 =1u 
+.param l_M6 = 0.7u
+
+
+* Requisitos de diseño
+.param Cl = 5p
+.csparam Cl = \{Cl\}
+.param GBW_Objetivo= 2*Pi*100Meg
+.csparam GBW_Objetivo = \{GBW_Objetivo\}
+
+.param Cc = Cl*0.022
+.csparam Cc = \{Cc\}
+
+"}
+C {code.sym} -390 -640 0 0 {name=MillerOTA_60MHz60dB only_toplevel=false spice_ignore=1
+
+value="
+.param temp=27
+
+.param m_M8 = 500
+.param m_M5 = 40
+.param m_M7 = 11000
+.param w_M8 =0.5u 
+.param w_M7 =0.5u
+.param w_M5 =0.5u
+.param l_M875 = 1u
+
+.param m_M12 = 40
+.param w_M12 =0.3u
+.param l_M12 = 0.3u
+
+.param m_M34 = 1
+.param w_M34 =0.15u 
+.param l_M34 = 0.5u
+
+.param m_M6 = 10
+.param w_M6 =10u 
+.param l_M6 = 0.13u
+
+.param m_R = 1
+.param w_R =0.15u 
+.param l_R = 0.13u
+
+* Requisitos de diseño
+.param Cl = 20p
+.csparam Cl = \{Cl\}
+.param GBW_Objetivo= 2*Pi*60Meg
+.csparam GBW_Objetivo = \{GBW_Objetivo\}
+
+*.param Cc = Cl*0.1
+.param Cc = 0.1p
+.csparam Cc = \{Cc\}
+
+
+"}
+C {code.sym} -200 -640 0 0 {name=MillerOTA_30MHz50dB only_toplevel=false spice_ignore=1
+
+value="
+.param temp=27
+
+.param m_M8 = 400
+.param m_M7 = 1200
+.param m_M5 = 20
+.param w_M8 =0.5u 
+.param w_M7 =0.5u
+.param w_M5 =0.5u
+.param l_M875 = 1u
+
+.param m_M12 = 4
+.param w_M12 =0.3u
+.param l_M12 = 0.3u
+
+.param m_M34 = 1
+.param w_M34 =0.15u 
+.param l_M34 = 1u
+
+.param m_M6 = 35
+.param w_M6 =1u 
+.param l_M6 = 0.13u
+
+.param m_R = 1
+.param w_R =0.15u 
+.param l_R = 0.13u
+
+* Requisitos de diseño
+.param Cl = 5p
+.csparam Cl = \{Cl\}
+.param GBW_Objetivo= 2*Pi*30Meg
+.csparam GBW_Objetivo = \{GBW_Objetivo\}
+
+*.param Cc = Cl*0.1
+.param Cc = 0.1p
+.csparam Cc = \{Cc\}
+
+"}
